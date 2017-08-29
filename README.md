@@ -10,29 +10,33 @@ For Apple iOS (ARKit), please checkout "ios" branch.
 Supporting phones: 
 
 - Apple iPhone 7
-- Apple iPhone 7 Plus
+- Apple iPhone 7 Plus (tested)
 - Apple iPhone 6S
 - Apple iPhone 6S Plus
 
 Coming soon:
+
 - Apple iPhone 8
 - Apple iPhone 7S
 - Apple iPhone 7S Plus
 
-## Android ARCore Branch
+## Android ARCore Branch 
 
 For Android (ARCore), please checkout "android" branch. 
 
-Supporting phones
-- Google Pixel and Pixel XL
+Supporting phones:
+
+- Google Pixel 
+- Google Pixel XL (tested)
 - Samsung Galaxy S8
 - More Android phones will be added once Google added ARCore support for them.
 
 ## Google Tango Branch
 
-For Google Tango, please checkout "tango" branch.
+For Google Tango, please checkout ["tango" branch.
 
 Supporting phones: 
+
 - Asus Zenfone AR
 - Lenove Phab 2 Pro [The Phone is a little too big to fit in HoloKit]
 
