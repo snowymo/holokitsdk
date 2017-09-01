@@ -5,7 +5,7 @@ HoloKitSDK is to build AR apps for HoloKit. Currently, we provide the SDK as Uni
 
 ## Apple iOS ARKit Branch
 
-For Apple iOS (ARKit), please checkout "ios" branch. 
+For Apple iOS (ARKit), please checkout ["ios"](/holokit/holokitsdk/tree/ios) branch. 
 
 Supporting phones: 
 
@@ -22,7 +22,7 @@ Coming soon:
 
 ## Android ARCore Branch 
 
-For Android (ARCore), please checkout "android" branch. 
+For Android (ARCore), please checkout ["android"](/holokit/holokitsdk/tree/android) branch. 
 
 Supporting phones:
 
@@ -33,12 +33,12 @@ Supporting phones:
 
 ## Google Tango Branch
 
-For Google Tango, please checkout ["tango" branch.
+For Google Tango, please checkout ["tango"](/holokit/holokitsdk/tree/tango)  branch.
 
 Supporting phones: 
 
 - Asus Zenfone AR
-- Lenove Phab 2 Pro [The Phone is a little too big to fit in HoloKit]
+- Lenove Phab 2 Pro [The Phone is a little too big to fit in HoloKit. The calibration will be not accurate.]
 
 
 ## Attribution
