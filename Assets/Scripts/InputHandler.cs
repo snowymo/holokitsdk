@@ -6,12 +6,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using System.IO;
+using System.Text.RegularExpressions;
+
+public class KeyWord{
+	public string kw;
+	public float score;
+
+	public KeyWord(){
+		kw = "";
+		score = 0;
+	}
+
+	public KeyWord(string st, float f){
+		kw = st;
+		score = f;
+	}
+}
 
 public class Cluster
 {
 	public Vector3 pos;
 //	public int[] indicesOfPoints;
 	public List<int> indicesOfPoints;
+	public List<KeyWord> keywords;
+	public float color_score;
+
 	public MyMesh mm;
 	public GameObject go;
 
@@ -21,6 +40,9 @@ public class Cluster
 		pos = new Vector3 ();
 //		indicesOfPoints = new int[POINT_SIZE_EACH_CLUSTER];
 		indicesOfPoints = new List<int>();
+		keywords = new List<KeyWord> ();
+		color_score = 0;
+
 		mm = new MyMesh ();
 
 	}
@@ -54,6 +76,8 @@ public class InputHandler
 	const string file_3dembedding = "Data/3d_embedding.txt";
 	const string file_clusterlabel = "Data/clusters_C800.txt";
 	const string file_clusterpos = "Data/cluster_centers_C800.txt";
+	const string file_keywords = "Data/cluster_word_scores.txt";
+	const string file_score = "Data/Oatly_index.csv";
 	#endif
 
 
@@ -105,6 +129,64 @@ public class InputHandler
 		}
 	}
 
+	private void addClusterKeyWords(string[] stKeyWords){
+		float idx = float.Parse (stKeyWords [0], System.Globalization.NumberStyles.Float);
+
+		string pattern = @"\(\'([^\(\)]+)\',\s([^\(\)]+)\)";//(,\(([^\(\)]+)\)+)\]
+		int ctr = 0;
+		foreach (Match m in Regex.Matches(stKeyWords[1], pattern)) {
+			string kw = m.Groups [1].Value;
+			float kw_score = float.Parse (m.Groups [2].Value, System.Globalization.NumberStyles.Float);
+			clusters [(int)idx % CLUSTER_SIZE].keywords.Add (new KeyWord(kw,kw_score));
+		}
+
+//		String input = "[This is captured\ntext.]\n\n[\n" +
+//			"[This is more captured text.]\n]\n" +
+//			"[Some more captured text:\n   Option1" +
+//			"\n   Option2][Terse text.]";
+//		 pattern = @"\[([^\[\]]+)\]";
+//		 ctr = 0;
+//		foreach (Match m in Regex.Matches(input, pattern))
+//			Console.WriteLine("{0}: {1}", ++ctr, m.Groups[1].Value);
+
+//		pattern = @"\[\(\'([^\']+)\',\t\d+\)(,\t\(\'([^\']+)\',\t\d+\))\]";
+//		ctr = 0;
+//		foreach (Match m in Regex.Matches(stKeyWords[1], pattern)) {
+//			Console.WriteLine ("{0}: {1}", ++ctr, m.Groups [1].Value);
+			//			float kw_score = m.
+//		}
+
+//		string pattern1 = @"[\[\(']";
+//		string pattern2 = @"[',\s]";
+//		string pattern3 = @"[\), \(\']";
+//		string pattern4 = @"[\)\]]";
+//		pattern = pattern1 + 
+//		String[] elements = Regex.Split(stKeyWords[1], pattern);
+//		pattern = @"[\[\(']?[',\s]?[\), \(\']?[\)\]]?";
+//
+//		foreach (var element in elements)
+//			Console.WriteLine(element);
+		
+//		int len = stKeyWords.Length;
+//		for (int i = 0; i < len / 2; i++) {
+//			
+//			string kw = stKeyWords [i * 2+1];
+//			float kw_score = float.Parse (stKeyWords[i*2+1+1], System.Globalization.NumberStyles.Float);
+//			clusters [(int)idx % CLUSTER_SIZE].keywords.Add (new KeyWord(kw,kw_score));
+//		}
+	}
+
+	private void addClusterColorScore (string[] stColor)
+	{
+		if (stColor.Length == 2) {
+			float idx = float.Parse (stColor [0], System.Globalization.NumberStyles.Float);
+			float color_score = 0;
+			if(stColor[1] != "NULL")
+				color_score = float.Parse (stColor [1], System.Globalization.NumberStyles.Float);
+			clusters [(int)(idx) % CLUSTER_SIZE].color_score = color_score;
+		}
+	}
+
 	private bool loadFromFile (string fileName, char[] splitter)
 	{
 		// Handle any problems that might arise when reading the text
@@ -125,7 +207,8 @@ public class InputHandler
 						// Do whatever you need to do with the text line, it's a string now
 						// In this example, I split it into arguments based on comma
 						// deliniators, then send that array to DoStuff()
-						string[] entries = line.Split (splitter);
+
+						string[] entries = line.Split (splitter, StringSplitOptions.RemoveEmptyEntries);
 						if (entries.Length > 0)
 //							addPointItem(entries);
 							loadHandler (entries);
@@ -165,6 +248,17 @@ public class InputHandler
 		loadHandler = addClusterLabel;
 		loadFromFile (file_clusterlabel, new char[]{ ',' });
 		Debug.Log ("finish cluster label loading");
+
+		pointIdx4Start = 0;
+		loadHandler = addClusterKeyWords;
+//		loadFromFile (file_keywords, new char[]{"\t", "[(\'", "\', ", "), (\'", ")]"});
+		loadFromFile (file_keywords, new char[]{'\t'});
+		Debug.Log ("finish cluster key words loading");
+
+		pointIdx4Start = 0;
+		loadHandler = addClusterColorScore;
+		loadFromFile (file_score, new char[]{','});
+		Debug.Log ("finish cluster color score loading");
 	}
 
 	public InputHandler(){
