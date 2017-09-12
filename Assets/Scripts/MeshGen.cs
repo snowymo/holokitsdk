@@ -12,6 +12,8 @@ public class MeshGen : MonoBehaviour
 	//
 	public GameObject clusterUnit;
 
+	public float resizeScale;
+
 	//	MyMesh mm;
 	public InputHandler ih;
 
@@ -97,11 +99,12 @@ ShowPoints,
 		}
 	}
 
-	float resizeScale = 10;
+
 	void generateSphereForEachCluster ()
 	{
 		for (int i = 0; i < ih.clusters.Length; i++) {
-			ih.clusters [i].go = GameObject.Instantiate (clusterUnit, ih.clusters[i].pos / resizeScale, Quaternion.identity);
+			ih.clusters [i].go = GameObject.Instantiate (clusterUnit, ih.clusters[i].pos * resizeScale, Quaternion.identity);
+			ih.clusters [i].go.transform.localScale = new Vector3 (resizeScale, resizeScale, resizeScale);
 			ih.clusters [i].go.name = "cluster" + i.ToString ();
 			//			for (int j = 0; j < ih.clusters [i].indicesOfPoints.Count; j++) {
 			//				print ("clusters[i].indicesOfPoints:" + j + "point:" + ih.points [ih.clusters [i].indicesOfPoints [j]]);

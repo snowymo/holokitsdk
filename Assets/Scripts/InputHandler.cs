@@ -189,31 +189,31 @@ public class InputHandler
 		}
 	}
 
-	IEnumerator requestFiles(string filePath) {
-		string result;
-		if (filePath.Contains("://")) {
-			WWW www = new WWW(filePath);
-			yield return www;
-			result = www.text;
-		} else
-			result = System.IO.File.ReadAllText(filePath);
-		Debug.Log("\n[hehe] result:" + result.Substring(0,20));
-	}
+//	IEnumerator requestFiles(string filePath) {
+//		string result;
+//		if (filePath.Contains("://")) {
+//			WWW www = new WWW(filePath);
+//			yield return www;
+//			result = www.text;
+//		} else
+//			result = System.IO.File.ReadAllText(filePath);
+//		Debug.Log("\n[hehe] result:" + result.Substring(0,20));
+//	}
 
-	void loadFiles(DirectoryInfo info){
-		Debug.Log("\n[hehe] in assests info:" + info.Name);
-		FileInfo[] fileInfo = info.GetFiles("*.*"); 
-		Debug.Log("\n[hehe] in assests info:" + info.ToString() + " files:" + fileInfo.Length);
-		for(int i = 0; i < fileInfo.Length; i++){
-			Debug.Log("\n[hehe] files:" + fileInfo[i].Name);
-		}
-		DirectoryInfo[] dirInfo = info.GetDirectories();
-		Debug.Log("\n[hehe] in assests info:" + info.ToString() + " dirs:" + dirInfo.Length);
-		for(int i = 0; i < dirInfo.Length; i++){
-			Debug.Log("\n[hehe] dirs:" + dirInfo[i].Name);
-			loadFiles (dirInfo[i]);
-		}
-	}
+//	void loadFiles(DirectoryInfo info){
+//		Debug.Log("\n[hehe] in assests info:" + info.Name);
+//		FileInfo[] fileInfo = info.GetFiles("*.*"); 
+//		Debug.Log("\n[hehe] in assests info:" + info.ToString() + " files:" + fileInfo.Length);
+//		for(int i = 0; i < fileInfo.Length; i++){
+//			Debug.Log("\n[hehe] files:" + fileInfo[i].Name);
+//		}
+//		DirectoryInfo[] dirInfo = info.GetDirectories();
+//		Debug.Log("\n[hehe] in assests info:" + info.ToString() + " dirs:" + dirInfo.Length);
+//		for(int i = 0; i < dirInfo.Length; i++){
+//			Debug.Log("\n[hehe] dirs:" + dirInfo[i].Name);
+//			loadFiles (dirInfo[i]);
+//		}
+//	}
 
 	private bool loadFromFile (string fileName, char[] splitter)
 	{
@@ -223,66 +223,47 @@ public class InputHandler
 //			string result;
 			// Create a new StreamReader, tell it which file to read and what encoding the file was saved as
 			if(Application.isMobilePlatform){
-				FileInfo fileDataHost = new FileInfo("Data/hosts.txt");
-				Debug.Log("[hehe] Data/hosts.txt exist:" + fileDataHost.Exists);
-				FileInfo filedataDataHost = new FileInfo("/data/hosts.txt");
-				Debug.Log("[hehe] /data/hosts.txt exist:" + filedataDataHost.Exists);
-				DirectoryInfo dirJarAssets = new DirectoryInfo("jar:file:///data/app/com.zhenyihe.meshar-1/base.apk!/assets");
-				Debug.Log("[hehe] jar:file:///data/app/com.zhenyihe.meshar-1/base.apk!/assets exist:" + dirJarAssets.Exists);
-				DirectoryInfo dirAssets = new DirectoryInfo("/data/app/com.zhenyihe.meshar-1/base.apk!/assets");
-				Debug.Log("[hehe] /data/app/com.zhenyihe.meshar-1/base.apk!/assets exist:" + dirAssets.Exists);
+				fileName = Application.streamingAssetsPath + "/" + fileName;
+				WWW reader = new WWW (fileName);
+				while (!reader.isDone) {
+				}
 
-				fileName = System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
-				if(fileName.Contains("file://")){
-//					fileName.Replace("file://","");
-					fileName = fileName.Substring(11);
+				Debug.Log("[hehe] TestSA " + fileName + "\t" + reader.text.Substring(0,20));
+				string[] lines = reader.text.Split(new char[]{'\n'},StringSplitOptions.RemoveEmptyEntries);
+				for(int i = 0; i < lines.Length; i++){
+					string[] entries = lines[i].Split (splitter, StringSplitOptions.RemoveEmptyEntries);
+					if (entries.Length > 0)
+						//							addPointItem(entries);
+						loadHandler (entries);
 				}
-//				fileName = System.IO.Path.Combine(Application.persistentDataPath, fileName);
-				Debug.Log("\n[hehe] mobile QUQ" + (Application.isMobilePlatform).ToString() + " with\n" + fileName);
-				requestFiles(fileName);
-				string test = System.IO.Path.Combine(Application.streamingAssetsPath, "test");
-				if(test.Contains("file://")){
-					test = test.Substring(11);
-//					test.Replace("file://","");
-				}
-				requestFiles(test);
-				if(Application.streamingAssetsPath.Contains("file://")){
-//					DirectoryInfo info = new DirectoryInfo(Application.streamingAssetsPath.Replace("file://",""));
-					DirectoryInfo info = new DirectoryInfo(Application.streamingAssetsPath.Substring(11));
-					loadFiles(info);
-				}
-//				Debug.Log("\n[hehe] in assests:" + dirInfo.ToString());
-				if (fileName.Contains("://")) {
-//					WWW www = new WWW(fileName);
-//					result = www.text;
-				} 
-//					result = System.IO.File.ReadAllText(fileName);
+				return true;
 			}
-
-			StreamReader theReader = new StreamReader (fileName, Encoding.Default);
+			else{
+				StreamReader theReader = new StreamReader (fileName, Encoding.Default);
 			// Immediately clean up the reader after this block of code is done.
 			// You generally use the "using" statement for potentially memory-intensive objects
 			// instead of relying on garbage collection.
 			// (Do not confuse this with the using directive for namespace at the beginning of a class!)
-			using (theReader) {
-				// While there's lines left in the text file, do this:
-				do {
-					line = theReader.ReadLine ();
+				using (theReader) {
+					// While there's lines left in the text file, do this:
+					do {
+						line = theReader.ReadLine ();
 
-					if (line != null) {
-						// Do whatever you need to do with the text line, it's a string now
-						// In this example, I split it into arguments based on comma
-						// deliniators, then send that array to DoStuff()
+						if (line != null) {
+							// Do whatever you need to do with the text line, it's a string now
+							// In this example, I split it into arguments based on comma
+							// deliniators, then send that array to DoStuff()
 
-						string[] entries = line.Split (splitter, StringSplitOptions.RemoveEmptyEntries);
-						if (entries.Length > 0)
-							//							addPointItem(entries);
-							loadHandler (entries);
-					}
-				} while (line != null);
-				// Done reading, close the reader and return true to broadcast success    
-				theReader.Close ();
-				return true;
+							string[] entries = line.Split (splitter, StringSplitOptions.RemoveEmptyEntries);
+							if (entries.Length > 0)
+								//							addPointItem(entries);
+								loadHandler (entries);
+						}
+					} while (line != null);
+					// Done reading, close the reader and return true to broadcast success    
+					theReader.Close ();
+					return true;
+				}
 			}
 		}
 		// If anything broke in the try block, we throw an exception with information
