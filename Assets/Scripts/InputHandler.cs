@@ -26,24 +26,26 @@ public class KeyWord{
 public class Cluster
 {
 	public Vector3 pos;
-//	public int[] indicesOfPoints;
+	//	public int[] indicesOfPoints;
 	public List<int> indicesOfPoints;
 	public List<KeyWord> keywords;
 	public float color_score;
 
 	public MyMesh mm;
 	public GameObject go;
+	//	public TextMesh keywordDisplay;
 
-//	const int POINT_SIZE_EACH_CLUSTER = 63;
+	//	const int POINT_SIZE_EACH_CLUSTER = 63;
 
 	public Cluster(){
 		pos = new Vector3 ();
-//		indicesOfPoints = new int[POINT_SIZE_EACH_CLUSTER];
+		//		indicesOfPoints = new int[POINT_SIZE_EACH_CLUSTER];
 		indicesOfPoints = new List<int>();
 		keywords = new List<KeyWord> ();
 		color_score = 0;
 
 		mm = new MyMesh ();
+
 
 	}
 }
@@ -122,7 +124,7 @@ public class InputHandler
 			float idx = float.Parse (stLabel [1], System.Globalization.NumberStyles.Float);
 			if(points [pointIdx4Start] == null)
 				points [pointIdx4Start] = new Point ();
-//			clusters [clusterIdx4Start++].label = l;
+			//			clusters [clusterIdx4Start++].label = l;
 			points[pointIdx4Start].label = l;
 			points [pointIdx4Start].cluster_group = (int)idx % CLUSTER_SIZE;
 			clusters[(int)(idx) % CLUSTER_SIZE].indicesOfPoints.Add(pointIdx4Start++);
@@ -140,40 +142,40 @@ public class InputHandler
 			clusters [(int)idx % CLUSTER_SIZE].keywords.Add (new KeyWord(kw,kw_score));
 		}
 
-//		String input = "[This is captured\ntext.]\n\n[\n" +
-//			"[This is more captured text.]\n]\n" +
-//			"[Some more captured text:\n   Option1" +
-//			"\n   Option2][Terse text.]";
-//		 pattern = @"\[([^\[\]]+)\]";
-//		 ctr = 0;
-//		foreach (Match m in Regex.Matches(input, pattern))
-//			Console.WriteLine("{0}: {1}", ++ctr, m.Groups[1].Value);
+		//		String input = "[This is captured\ntext.]\n\n[\n" +
+		//			"[This is more captured text.]\n]\n" +
+		//			"[Some more captured text:\n   Option1" +
+		//			"\n   Option2][Terse text.]";
+		//		 pattern = @"\[([^\[\]]+)\]";
+		//		 ctr = 0;
+		//		foreach (Match m in Regex.Matches(input, pattern))
+		//			Console.WriteLine("{0}: {1}", ++ctr, m.Groups[1].Value);
 
-//		pattern = @"\[\(\'([^\']+)\',\t\d+\)(,\t\(\'([^\']+)\',\t\d+\))\]";
-//		ctr = 0;
-//		foreach (Match m in Regex.Matches(stKeyWords[1], pattern)) {
-//			Console.WriteLine ("{0}: {1}", ++ctr, m.Groups [1].Value);
-			//			float kw_score = m.
-//		}
+		//		pattern = @"\[\(\'([^\']+)\',\t\d+\)(,\t\(\'([^\']+)\',\t\d+\))\]";
+		//		ctr = 0;
+		//		foreach (Match m in Regex.Matches(stKeyWords[1], pattern)) {
+		//			Console.WriteLine ("{0}: {1}", ++ctr, m.Groups [1].Value);
+		//			float kw_score = m.
+		//		}
 
-//		string pattern1 = @"[\[\(']";
-//		string pattern2 = @"[',\s]";
-//		string pattern3 = @"[\), \(\']";
-//		string pattern4 = @"[\)\]]";
-//		pattern = pattern1 + 
-//		String[] elements = Regex.Split(stKeyWords[1], pattern);
-//		pattern = @"[\[\(']?[',\s]?[\), \(\']?[\)\]]?";
-//
-//		foreach (var element in elements)
-//			Console.WriteLine(element);
-		
-//		int len = stKeyWords.Length;
-//		for (int i = 0; i < len / 2; i++) {
-//			
-//			string kw = stKeyWords [i * 2+1];
-//			float kw_score = float.Parse (stKeyWords[i*2+1+1], System.Globalization.NumberStyles.Float);
-//			clusters [(int)idx % CLUSTER_SIZE].keywords.Add (new KeyWord(kw,kw_score));
-//		}
+		//		string pattern1 = @"[\[\(']";
+		//		string pattern2 = @"[',\s]";
+		//		string pattern3 = @"[\), \(\']";
+		//		string pattern4 = @"[\)\]]";
+		//		pattern = pattern1 + 
+		//		String[] elements = Regex.Split(stKeyWords[1], pattern);
+		//		pattern = @"[\[\(']?[',\s]?[\), \(\']?[\)\]]?";
+		//
+		//		foreach (var element in elements)
+		//			Console.WriteLine(element);
+
+		//		int len = stKeyWords.Length;
+		//		for (int i = 0; i < len / 2; i++) {
+		//			
+		//			string kw = stKeyWords [i * 2+1];
+		//			float kw_score = float.Parse (stKeyWords[i*2+1+1], System.Globalization.NumberStyles.Float);
+		//			clusters [(int)idx % CLUSTER_SIZE].keywords.Add (new KeyWord(kw,kw_score));
+		//		}
 	}
 
 	private void addClusterColorScore (string[] stColor)
@@ -187,12 +189,76 @@ public class InputHandler
 		}
 	}
 
+	IEnumerator requestFiles(string filePath) {
+		string result;
+		if (filePath.Contains("://")) {
+			WWW www = new WWW(filePath);
+			yield return www;
+			result = www.text;
+		} else
+			result = System.IO.File.ReadAllText(filePath);
+		Debug.Log("\n[hehe] result:" + result.Substring(0,20));
+	}
+
+	void loadFiles(DirectoryInfo info){
+		Debug.Log("\n[hehe] in assests info:" + info.Name);
+		FileInfo[] fileInfo = info.GetFiles("*.*"); 
+		Debug.Log("\n[hehe] in assests info:" + info.ToString() + " files:" + fileInfo.Length);
+		for(int i = 0; i < fileInfo.Length; i++){
+			Debug.Log("\n[hehe] files:" + fileInfo[i].Name);
+		}
+		DirectoryInfo[] dirInfo = info.GetDirectories();
+		Debug.Log("\n[hehe] in assests info:" + info.ToString() + " dirs:" + dirInfo.Length);
+		for(int i = 0; i < dirInfo.Length; i++){
+			Debug.Log("\n[hehe] dirs:" + dirInfo[i].Name);
+			loadFiles (dirInfo[i]);
+		}
+	}
+
 	private bool loadFromFile (string fileName, char[] splitter)
 	{
 		// Handle any problems that might arise when reading the text
 		try {
 			string line;
+//			string result;
 			// Create a new StreamReader, tell it which file to read and what encoding the file was saved as
+			if(Application.isMobilePlatform){
+				FileInfo fileDataHost = new FileInfo("Data/hosts.txt");
+				Debug.Log("[hehe] Data/hosts.txt exist:" + fileDataHost.Exists);
+				FileInfo filedataDataHost = new FileInfo("/data/hosts.txt");
+				Debug.Log("[hehe] /data/hosts.txt exist:" + filedataDataHost.Exists);
+				DirectoryInfo dirJarAssets = new DirectoryInfo("jar:file:///data/app/com.zhenyihe.meshar-1/base.apk!/assets");
+				Debug.Log("[hehe] jar:file:///data/app/com.zhenyihe.meshar-1/base.apk!/assets exist:" + dirJarAssets.Exists);
+				DirectoryInfo dirAssets = new DirectoryInfo("/data/app/com.zhenyihe.meshar-1/base.apk!/assets");
+				Debug.Log("[hehe] /data/app/com.zhenyihe.meshar-1/base.apk!/assets exist:" + dirAssets.Exists);
+
+				fileName = System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
+				if(fileName.Contains("file://")){
+//					fileName.Replace("file://","");
+					fileName = fileName.Substring(11);
+				}
+//				fileName = System.IO.Path.Combine(Application.persistentDataPath, fileName);
+				Debug.Log("\n[hehe] mobile QUQ" + (Application.isMobilePlatform).ToString() + " with\n" + fileName);
+				requestFiles(fileName);
+				string test = System.IO.Path.Combine(Application.streamingAssetsPath, "test");
+				if(test.Contains("file://")){
+					test = test.Substring(11);
+//					test.Replace("file://","");
+				}
+				requestFiles(test);
+				if(Application.streamingAssetsPath.Contains("file://")){
+//					DirectoryInfo info = new DirectoryInfo(Application.streamingAssetsPath.Replace("file://",""));
+					DirectoryInfo info = new DirectoryInfo(Application.streamingAssetsPath.Substring(11));
+					loadFiles(info);
+				}
+//				Debug.Log("\n[hehe] in assests:" + dirInfo.ToString());
+				if (fileName.Contains("://")) {
+//					WWW www = new WWW(fileName);
+//					result = www.text;
+				} 
+//					result = System.IO.File.ReadAllText(fileName);
+			}
+
 			StreamReader theReader = new StreamReader (fileName, Encoding.Default);
 			// Immediately clean up the reader after this block of code is done.
 			// You generally use the "using" statement for potentially memory-intensive objects
@@ -210,7 +276,7 @@ public class InputHandler
 
 						string[] entries = line.Split (splitter, StringSplitOptions.RemoveEmptyEntries);
 						if (entries.Length > 0)
-//							addPointItem(entries);
+							//							addPointItem(entries);
 							loadHandler (entries);
 					}
 				} while (line != null);
@@ -223,7 +289,7 @@ public class InputHandler
 		// on what didn't work
 		catch (System.Exception e) {
 			Debug.Log (e.Message);
-//			print (e.Message);
+			//			print (e.Message);
 			return false;
 		}
 	}
@@ -243,7 +309,7 @@ public class InputHandler
 		Debug.Log ("finish cluster loading");
 
 		// I guess the second column is the index of the cluster for each point
-//		clusterIdx4Start = 0;
+		//		clusterIdx4Start = 0;
 		pointIdx4Start = 0;
 		loadHandler = addClusterLabel;
 		loadFromFile (file_clusterlabel, new char[]{ ',' });
@@ -251,7 +317,7 @@ public class InputHandler
 
 		pointIdx4Start = 0;
 		loadHandler = addClusterKeyWords;
-//		loadFromFile (file_keywords, new char[]{"\t", "[(\'", "\', ", "), (\'", ")]"});
+		//		loadFromFile (file_keywords, new char[]{"\t", "[(\'", "\', ", "), (\'", ")]"});
 		loadFromFile (file_keywords, new char[]{'\t'});
 		Debug.Log ("finish cluster key words loading");
 
