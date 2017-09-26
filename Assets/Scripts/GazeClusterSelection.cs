@@ -68,18 +68,23 @@ public class GazeClusterSelection : MonoBehaviour {
 
 	public void GazeExit() {
 		Debug.Log("[hehe]Gaze exit from " + gameObject.name);
+		int clusterIdx = int.Parse (gameObject.name.Substring (7));
+
 //		GetComponent<Renderer>().material.color = Color.white;
 //		gameObject.transform.localScale = oriObjScale;
-		gameObject.GetComponent<Renderer> ().material = oriObjMat;
+//		gameObject.GetComponent<Renderer> ().material = oriObjMat;
+		gameObject.GetComponent<Renderer> ().material.color = 
+			new Color (ih.clusters [clusterIdx].color [0], ih.clusters [clusterIdx].color [1], ih.clusters [clusterIdx].color [2], 0.5f);
 		// hide keywords
 		Transform tf = gameObject.transform.Find("tooltip");
 		if(tf != null)
 			tf.gameObject.SetActive(false);
 		// hide points
-		int clusterIdx = int.Parse (gameObject.name.Substring (7));
 		for (int i = 0; i < ih.clusters [clusterIdx].indicesOfPoints.Count; i++) {
 			gameObject.transform.Find ("point" + i.ToString ()).gameObject.SetActive (false);
-			gameObject.transform.Find ("point" + i.ToString ()).gameObject.GetComponent<Renderer> ().material = oriObjMat;
+//			gameObject.transform.Find ("point" + i.ToString ()).gameObject.GetComponent<Renderer> ().material = oriObjMat;
+			gameObject.transform.Find ("point" + i.ToString ()).gameObject.GetComponent<Renderer> ().material.color = 
+				new Color (ih.clusters [clusterIdx].color [0], ih.clusters [clusterIdx].color [1], ih.clusters [clusterIdx].color [2], 0.5f);
 //			gameObject.transform.Find ("pointname" + i.ToString ()).gameObject.SetActive (false);
 		}
 	}

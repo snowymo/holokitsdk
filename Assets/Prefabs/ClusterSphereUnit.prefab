@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 965f8184b5b9b4debad2e1f59988db62, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0481bee1fe27a4a419a0a7a0341ac484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oriObjMat: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  oriObjMat: {fileID: 2100000, guid: 965f8184b5b9b4debad2e1f59988db62, type: 2}
   selectedMat: {fileID: 2100000, guid: 75edd7961563b46dcb43f97b0263d16d, type: 2}
   tooltipPrefab: {fileID: 1000013198843976, guid: b7054c17b3c96436ca9cc9f24ea05e62,
     type: 2}

@@ -65,6 +65,8 @@ ShowPoints,
 
 	}
 
+
+
 	void generateMeshForEachClusterWithPoints ()
 	{
 		for (int i = 0; i < ih.clusters.Length; i++) {
@@ -108,6 +110,11 @@ ShowPoints,
 			ih.clusters [i].go = GameObject.Instantiate (clusterUnit, ih.clusters[i].pos * resizeScale, Quaternion.identity);
 			ih.clusters [i].go.transform.localScale = new Vector3 (resizeScale, resizeScale, resizeScale);
 			ih.clusters [i].go.name = "cluster" + i.ToString ();
+//			Vector3 rgb = generateColor (ih.clusters [i].color_score);
+//			print ("cluster" + i.ToString () + " " + ih.clusters [i].color_score + ":" + rgb.ToString ());
+//			Material mat = new Material (ih.clusters [i].go.GetComponent<Renderer> ().material);
+//			mat.color = new Color (rgb [0], rgb [1], rgb [2], 0.5f);
+			ih.clusters [i].go.GetComponent<Renderer> ().material.color = new Color (ih.clusters [i].color [0], ih.clusters [i].color [1], ih.clusters [i].color [2], 0.5f);
 			GameObject tooltip = GameObject.Instantiate (tooltipPrefab, ih.clusters [i].go.transform);
 			tooltip.name = "clusterName";
 			tooltip.transform.forward = Camera.main.transform.forward;

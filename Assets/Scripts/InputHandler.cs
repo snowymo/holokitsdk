@@ -30,6 +30,7 @@ public class Cluster
 	public List<int> indicesOfPoints;
 	public List<KeyWord> keywords;
 	public float color_score;
+	public Vector3 color;
 
 	public MyMesh mm;
 	public GameObject go;
@@ -88,6 +89,9 @@ public class InputHandler
 
 	int pointIdx4Start;
 	int clusterIdx4Start;
+
+	public float maxColorScore;
+	public float minColorScore;
 
 	delegate void call4load (string[] entry);
 
@@ -186,7 +190,56 @@ public class InputHandler
 			if(stColor[1] != "NULL")
 				color_score = float.Parse (stColor [1], System.Globalization.NumberStyles.Float);
 			clusters [(int)(idx) % CLUSTER_SIZE].color_score = color_score;
+			if (color_score > maxColorScore)
+				maxColorScore = color_score;
+			if (color_score < minColorScore)
+				minColorScore = color_score;
+			Debug.Log ("max:" + maxColorScore + "\tmin:" + minColorScore);
 		}
+	}
+
+	private void addClusterColor (string[] stColor)
+	{
+		if (stColor.Length == 2) {
+			float idx = float.Parse (stColor [0], System.Globalization.NumberStyles.Float);
+			float color_score = 0;
+			if(stColor[1] != "NULL")
+				color_score = float.Parse (stColor [1], System.Globalization.NumberStyles.Float);
+			clusters [(int)(idx) % CLUSTER_SIZE].color = generateColor (color_score);
+		}
+	}
+
+	float MinVisibleWaveLength = 350.0f;
+	float MaxVisibleWaveLength = 650.0f;
+	Vector3 generateColor(float colorScore){
+		float colorNormScore = (colorScore - minColorScore) / (maxColorScore-minColorScore) * (MaxVisibleWaveLength - MinVisibleWaveLength) + MinVisibleWaveLength;
+		Vector3 rgb = new Vector3();
+		if(colorNormScore < 439f){
+			rgb[0]   = -(colorNormScore - 440f) / (440f - 380f);
+			rgb[1] = 0.0f;
+			rgb[2] = 1.0f;
+		}else if(colorNormScore < 489f){
+			rgb[0]= 0.0f;
+			rgb[1]= (colorNormScore - 440f) / (490f - 440f);
+			rgb[2]= 1.0f;
+		}else if(colorNormScore < 509f){
+			rgb[0]= 0.0f;
+			rgb[1]= 1.0f;
+			rgb[2]= -(colorNormScore - 510f) / (510f - 490f);
+		}else if(colorNormScore < 579){
+			rgb[0]= (colorNormScore - 510f) / (580f - 510f);
+			rgb[1]= 1.0f;
+			rgb[2]= 0.0f;
+		}else if(colorNormScore < 644f){
+			rgb[0]= 1.0f;
+			rgb[1]= -(colorNormScore - 645f) / (645f - 580f);
+			rgb[2]= 0.0f;
+		}else{
+			rgb[0]= 1.0f;
+			rgb[1]= 0.0f;
+			rgb[2]= 0.0f;
+		}
+		return rgb;
 	}
 
 //	IEnumerator requestFiles(string filePath) {
@@ -279,6 +332,9 @@ public class InputHandler
 	// Use this for initialization
 	public void Initialize ()
 	{
+		maxColorScore = -1000000;
+		minColorScore = 1000000;
+
 		pointIdx4Start = 0;
 		loadHandler = addPointItem;
 		loadFromFile (file_3dembedding, new char[]{ ' ' });
@@ -304,6 +360,8 @@ public class InputHandler
 
 		pointIdx4Start = 0;
 		loadHandler = addClusterColorScore;
+		loadFromFile (file_score, new char[]{','});
+		loadHandler = addClusterColor;
 		loadFromFile (file_score, new char[]{','});
 		Debug.Log ("finish cluster color score loading");
 	}
