@@ -22,10 +22,8 @@ GameObject:
   - component: {fileID: 33794340966638310}
   - component: {fileID: 135691856835002732}
   - component: {fileID: 23949602723775938}
-  - component: {fileID: 114115016923242400}
-  - component: {fileID: 114510761948198184}
   m_Layer: 0
-  m_Name: ClusterSphereUnit
+  m_Name: SphereUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1328332969668444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,71 +81,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328332969668444}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114115016923242400
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1328332969668444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75007c7c86e20471a8fe826db39ec5e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GazeEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114510761948198184}
-        m_MethodName: GazeEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  GazeExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114510761948198184}
-        m_MethodName: GazeExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  KeysToListenOnGaze: 
-  KeyDownOnGaze:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: HoloKit.GazeKeyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
---- !u!114 &114510761948198184
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1328332969668444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0481bee1fe27a4a419a0a7a0341ac484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oriObjMat: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  selectedMat: {fileID: 2100000, guid: 75edd7961563b46dcb43f97b0263d16d, type: 2}
-  tooltipPrefab: {fileID: 1000013198843976, guid: b7054c17b3c96436ca9cc9f24ea05e62,
-    type: 2}
-  pointUnit: {fileID: 1328332969668444, guid: 48f9f3ff50473484483f41cd4cc7d5b5, type: 2}
 --- !u!135 &135691856835002732
 SphereCollider:
   m_ObjectHideFlags: 1

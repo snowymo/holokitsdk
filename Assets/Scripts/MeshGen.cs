@@ -12,6 +12,8 @@ public class MeshGen : MonoBehaviour
 	//
 	public GameObject clusterUnit;
 
+	public GameObject tooltipPrefab;
+
 	public float resizeScale;
 
 	//	MyMesh mm;
@@ -106,6 +108,11 @@ ShowPoints,
 			ih.clusters [i].go = GameObject.Instantiate (clusterUnit, ih.clusters[i].pos * resizeScale, Quaternion.identity);
 			ih.clusters [i].go.transform.localScale = new Vector3 (resizeScale, resizeScale, resizeScale);
 			ih.clusters [i].go.name = "cluster" + i.ToString ();
+			GameObject tooltip = GameObject.Instantiate (tooltipPrefab, ih.clusters [i].go.transform);
+			tooltip.name = "clusterName";
+			tooltip.transform.forward = Camera.main.transform.forward;
+			tooltip.transform.localPosition = new Vector3 (0, 0, -0.5f);
+			tooltip.GetComponent<TextMesh> ().text = ih.clusters [i].go.name;
 			//			for (int j = 0; j < ih.clusters [i].indicesOfPoints.Count; j++) {
 			//				print ("clusters[i].indicesOfPoints:" + j + "point:" + ih.points [ih.clusters [i].indicesOfPoints [j]]);
 //			ih.clusters [i].mm.addOneObj (ih.clusters[i].pos);
