@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MeshGen : MonoBehaviour
 {
@@ -170,6 +171,15 @@ ShowPoints,
 			//			mesh.normals = ih.clusters [i].mm.norms;
 		}
 	}
+
+	public void detectPressedKeyOrButton()
+	{
+		foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+		{
+			if (Input.GetKeyDown(kcode))
+				Debug.Log("KeyCode down: " + kcode);
+		}
+	}
 	
 	// Update is called once per frame
 	void Update ()
@@ -180,6 +190,8 @@ ShowPoints,
 		}
 		animatePointCloud ();
 		lastFrameTime = Time.time;
+
+//		detectPressedKeyOrButton ();
 //		 = GetComponent<MeshFilter>().mesh;
 //		mesh.vertices = mm.vertices;
 //		mesh.uv = mm.uvs;

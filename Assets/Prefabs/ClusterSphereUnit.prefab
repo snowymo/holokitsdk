@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23949602723775938}
   - component: {fileID: 114115016923242400}
   - component: {fileID: 114510761948198184}
+  - component: {fileID: 114924622277251050}
   m_Layer: 0
   m_Name: ClusterSphereUnit
   m_TagString: Untagged
@@ -144,6 +145,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oriObjMat: {fileID: 2100000, guid: 965f8184b5b9b4debad2e1f59988db62, type: 2}
+  selectedMat: {fileID: 2100000, guid: 75edd7961563b46dcb43f97b0263d16d, type: 2}
+  isGazeEnter: 0
+--- !u!114 &114924622277251050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1328332969668444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b71a2e64a601487c81d9b5013ac6838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   selectedMat: {fileID: 2100000, guid: 75edd7961563b46dcb43f97b0263d16d, type: 2}
   tooltipPrefab: {fileID: 1000013198843976, guid: b7054c17b3c96436ca9cc9f24ea05e62,
     type: 2}

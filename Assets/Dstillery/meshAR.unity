@@ -538,9 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oriObjMat: {fileID: 2100000, guid: 0bcb59049fc9e4b10986819f09fba215, type: 2}
   selectedMat: {fileID: 2100000, guid: 75edd7961563b46dcb43f97b0263d16d, type: 2}
-  tooltipPrefab: {fileID: 1000013198843976, guid: b7054c17b3c96436ca9cc9f24ea05e62,
-    type: 2}
-  pointUnit: {fileID: 1328332969668444, guid: f5ae1cbefe0564b9b8188b5361d1f976, type: 2}
+  isGazeEnter: 0
 --- !u!1001 &621421417
 Prefab:
   m_ObjectHideFlags: 0
@@ -739,9 +737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oriObjMat: {fileID: 2100000, guid: 0bcb59049fc9e4b10986819f09fba215, type: 2}
   selectedMat: {fileID: 2100000, guid: 75edd7961563b46dcb43f97b0263d16d, type: 2}
-  tooltipPrefab: {fileID: 1000013198843976, guid: b7054c17b3c96436ca9cc9f24ea05e62,
-    type: 2}
-  pointUnit: {fileID: 1328332969668444, guid: f5ae1cbefe0564b9b8188b5361d1f976, type: 2}
+  isGazeEnter: 0
 --- !u!1001 &1134621043
 Prefab:
   m_ObjectHideFlags: 0
@@ -913,6 +909,18 @@ GameObject:
   m_PrefabParentObject: {fileID: 1902489288533864, guid: 00c9ead4afffc4146a19d97c085b420c,
     type: 2}
   m_PrefabInternal: {fileID: 1134621043}
+--- !u!114 &2078178310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2078178309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1121ee9feae8b42468bc7a6362499b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShow: 0
 --- !u!114 &2078178311
 MonoBehaviour:
   m_ObjectHideFlags: 0
