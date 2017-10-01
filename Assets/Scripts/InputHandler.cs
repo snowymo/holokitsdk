@@ -80,7 +80,7 @@ public class InputHandler
 	const string file_clusterlabel = "Data/clusters_C800.txt";
 	const string file_clusterpos = "Data/cluster_centers_C800.txt";
 	const string file_keywords = "Data/cluster_word_scores.txt";
-	const string file_score = "Data/Oatly_index.csv";
+	const string file_score = "Data/color.txt";
 	#endif
 
 
@@ -139,7 +139,7 @@ public class InputHandler
 		float idx = float.Parse (stKeyWords [0], System.Globalization.NumberStyles.Float);
 
 		string pattern = @"\(\'([^\(\)]+)\',\s([^\(\)]+)\)";//(,\(([^\(\)]+)\)+)\]
-		int ctr = 0;
+//		int ctr = 0;
 		foreach (Match m in Regex.Matches(stKeyWords[1], pattern)) {
 			string kw = m.Groups [1].Value;
 			float kw_score = float.Parse (m.Groups [2].Value, System.Globalization.NumberStyles.Float);
@@ -184,28 +184,36 @@ public class InputHandler
 
 	private void addClusterColorScore (string[] stColor)
 	{
+		Debug.Log ("[hehe] addClusterColorScore\t" + stColor.Length);
 		if (stColor.Length == 2) {
 			float idx = float.Parse (stColor [0], System.Globalization.NumberStyles.Float);
 			float color_score = 0;
-			if(stColor[1] != "NULL")
+			if (stColor [1] != "NULL")
 				color_score = float.Parse (stColor [1], System.Globalization.NumberStyles.Float);
 			clusters [(int)(idx) % CLUSTER_SIZE].color_score = color_score;
 			if (color_score > maxColorScore)
 				maxColorScore = color_score;
 			if (color_score < minColorScore)
 				minColorScore = color_score;
-			Debug.Log ("max:" + maxColorScore + "\tmin:" + minColorScore);
+			Debug.Log ("[hehe]max:" + maxColorScore + "\tmin:" + minColorScore);
+		} else {
+			Debug.Log ("[hehe] entry " + stColor.Length + "\t" + stColor[0] + "\t" + stColor[1] + "\t" + stColor[2] + "\t" + stColor[3]
+				+ "\t" + stColor[500]);
 		}
 	}
 
 	private void addClusterColor (string[] stColor)
 	{
+		Debug.Log ("[hehe] addClusterColor " + stColor.Length);
 		if (stColor.Length == 2) {
 			float idx = float.Parse (stColor [0], System.Globalization.NumberStyles.Float);
 			float color_score = 0;
 			if(stColor[1] != "NULL")
 				color_score = float.Parse (stColor [1], System.Globalization.NumberStyles.Float);
 			clusters [(int)(idx) % CLUSTER_SIZE].color = generateColor (color_score);
+			Debug.Log ("[hehe]color:" + clusters [(int)(idx) % CLUSTER_SIZE].color.ToString());
+		} else {
+			Debug.Log ("[hehe] entry " + stColor.Length + "\t" + stColor[0] + "\t" + stColor[1]);
 		}
 	}
 
@@ -281,8 +289,9 @@ public class InputHandler
 				while (!reader.isDone) {
 				}
 
-				Debug.Log("[hehe] TestSA " + fileName + "\t" + reader.text.Substring(0,20));
+				Debug.Log("[hehe] TestSA " + fileName + "\t" + reader.text.Substring(0,30));
 				string[] lines = reader.text.Split(new char[]{'\n'},StringSplitOptions.RemoveEmptyEntries);
+				Debug.Log("[hehe] lines " + lines.Length);
 				for(int i = 0; i < lines.Length; i++){
 					string[] entries = lines[i].Split (splitter, StringSplitOptions.RemoveEmptyEntries);
 					if (entries.Length > 0)
@@ -322,7 +331,7 @@ public class InputHandler
 		// If anything broke in the try block, we throw an exception with information
 		// on what didn't work
 		catch (System.Exception e) {
-			Debug.Log (e.Message);
+			Debug.Log ("[hehe]" + e.Message);
 			//			print (e.Message);
 			return false;
 		}
@@ -338,32 +347,32 @@ public class InputHandler
 		pointIdx4Start = 0;
 		loadHandler = addPointItem;
 		loadFromFile (file_3dembedding, new char[]{ ' ' });
-		Debug.Log ("finish points loading");
+		Debug.Log ("[hehe]finish points loading");
 
 		clusterIdx4Start = 0;
 		loadHandler = addClusterPos;
 		loadFromFile (file_clusterpos, new char[]{ ',' });
-		Debug.Log ("finish cluster loading");
+		Debug.Log ("[hehe]finish cluster loading");
 
 		// I guess the second column is the index of the cluster for each point
 		//		clusterIdx4Start = 0;
 		pointIdx4Start = 0;
 		loadHandler = addClusterLabel;
 		loadFromFile (file_clusterlabel, new char[]{ ',' });
-		Debug.Log ("finish cluster label loading");
+		Debug.Log ("[hehe]finish cluster label loading");
 
 		pointIdx4Start = 0;
 		loadHandler = addClusterKeyWords;
 		//		loadFromFile (file_keywords, new char[]{"\t", "[(\'", "\', ", "), (\'", ")]"});
 		loadFromFile (file_keywords, new char[]{'\t'});
-		Debug.Log ("finish cluster key words loading");
+		Debug.Log ("[hehe]finish cluster key words loading");
 
 		pointIdx4Start = 0;
 		loadHandler = addClusterColorScore;
 		loadFromFile (file_score, new char[]{','});
 		loadHandler = addClusterColor;
 		loadFromFile (file_score, new char[]{','});
-		Debug.Log ("finish cluster color score loading");
+		Debug.Log ("[hehe]finish cluster color score loading");
 	}
 
 	public InputHandler(){

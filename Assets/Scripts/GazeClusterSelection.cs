@@ -5,7 +5,7 @@ using UnityEngine;
 public class GazeClusterSelection : MonoBehaviour {
 
 //	Vector3 oriObjScale;
-	public Material oriObjMat;
+	Material oriObjMat;
 	public Material selectedMat;
 //	public GameObject tooltipPrefab;
 //	public GameObject pointUnit;
@@ -32,7 +32,8 @@ public class GazeClusterSelection : MonoBehaviour {
 		isGazeEnter = false;
 //		GetComponent<Renderer>().material.color = Color.white;
 //		gameObject.transform.localScale = oriObjScale;
-//		gameObject.GetComponent<Renderer> ().material = oriObjMat;
+		if(GetComponent<SelectDisplay>().isSelect == false)
+			gameObject.GetComponent<Renderer> ().material = oriObjMat;
 
 		
 	}
@@ -41,6 +42,7 @@ public class GazeClusterSelection : MonoBehaviour {
 	void Start () {
 		ih = GameObject.Find ("MeshGen").GetComponent<MeshGen>().ih;
 		isGazeEnter = false;
+		oriObjMat = gameObject.GetComponent<Renderer> ().material;
 //		resizeScale = 0.02f;
 //		oriObjScale = new Vector3 (0.1f, 0.1f, 0.1f);
 //		oriObjScale = new Vector3 (0.1f, 0.1f, 0.1f);

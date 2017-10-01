@@ -116,6 +116,7 @@ ShowPoints,
 //			Material mat = new Material (ih.clusters [i].go.GetComponent<Renderer> ().material);
 //			mat.color = new Color (rgb [0], rgb [1], rgb [2], 0.5f);
 			ih.clusters [i].go.GetComponent<Renderer> ().material.color = new Color (ih.clusters [i].color [0], ih.clusters [i].color [1], ih.clusters [i].color [2], 0.5f);
+//			print ("[hehe]: color when creating spheres" + ih.clusters [i].go.GetComponent<Renderer> ().material.color);
 			GameObject tooltip = GameObject.Instantiate (tooltipPrefab, ih.clusters [i].go.transform);
 			tooltip.name = "clusterName";
 			tooltip.transform.forward = Camera.main.transform.forward;
@@ -191,7 +192,7 @@ ShowPoints,
 		animatePointCloud ();
 		lastFrameTime = Time.time;
 
-//		detectPressedKeyOrButton ();
+		detectPressedKeyOrButton ();
 //		 = GetComponent<MeshFilter>().mesh;
 //		mesh.vertices = mm.vertices;
 //		mesh.uv = mm.uvs;

@@ -12,10 +12,13 @@ public class SelectDisplay : MonoBehaviour {
 	public GameObject pointUnit;
 	float resizeScale;
 
+	public bool isSelect;
+
 	// Use this for initialization
 	void Start () {
 		ih = GameObject.Find ("MeshGen").GetComponent<MeshGen>().ih;
 		resizeScale = 0.02f;
+		isSelect = false;
 	}
 	
 	// Update is called once per frame
@@ -49,10 +52,13 @@ public class SelectDisplay : MonoBehaviour {
 				//			gameObject.transform.Find ("pointname" + i.ToString ()).gameObject.SetActive (false);
 			}
 		}
+		isSelect = false;
 	}
 
 	void selectCluster(){
 		if (gameObject.name.Contains ("cluster")) {
+			isSelect = true;
+
 			int clusterIdx = int.Parse (gameObject.name.Substring (7));
 
 			if (ih.clusters [clusterIdx].keywords.Count > 0) {
