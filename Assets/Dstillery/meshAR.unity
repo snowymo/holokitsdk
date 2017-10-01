@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -536,7 +536,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0481bee1fe27a4a419a0a7a0341ac484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oriObjMat: {fileID: 2100000, guid: 0bcb59049fc9e4b10986819f09fba215, type: 2}
   selectedMat: {fileID: 2100000, guid: 75edd7961563b46dcb43f97b0263d16d, type: 2}
   isGazeEnter: 0
 --- !u!1001 &621421417
@@ -735,7 +734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0481bee1fe27a4a419a0a7a0341ac484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oriObjMat: {fileID: 2100000, guid: 0bcb59049fc9e4b10986819f09fba215, type: 2}
   selectedMat: {fileID: 2100000, guid: 75edd7961563b46dcb43f97b0263d16d, type: 2}
   isGazeEnter: 0
 --- !u!1001 &1134621043
@@ -745,61 +743,44 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1291019206}
     m_Modifications:
-    - target: {fileID: 4306485886343730, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
+    - target: {fileID: 4236268271338228, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4306485886343730, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
+    - target: {fileID: 4236268271338228, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4306485886343730, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
+    - target: {fileID: 4236268271338228, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4306485886343730, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
+    - target: {fileID: 4236268271338228, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4306485886343730, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
+    - target: {fileID: 4236268271338228, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4306485886343730, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
+    - target: {fileID: 4236268271338228, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4306485886343730, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
+    - target: {fileID: 4236268271338228, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4306485886343730, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
+    - target: {fileID: 4236268271338228, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1902489288533864, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 1726080993182242, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
+      propertyPath: m_Name
+      value: MeshGen
       objectReference: {fileID: 0}
-    - target: {fileID: 114601905044476812, guid: 00c9ead4afffc4146a19d97c085b420c,
-        type: 2}
-      propertyPath: rescale
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114601905044476812, guid: 00c9ead4afffc4146a19d97c085b420c,
-        type: 2}
-      propertyPath: resizeScale
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 114601905044476812, guid: 00c9ead4afffc4146a19d97c085b420c,
-        type: 2}
-      propertyPath: tooltipPrefab
-      value: 
-      objectReference: {fileID: 1000013198843976, guid: b7054c17b3c96436ca9cc9f24ea05e62,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 114601905044476812, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 00c9ead4afffc4146a19d97c085b420c, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1247557377
 Prefab:
@@ -904,37 +885,3 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f59b9945461344cebfcccf17cdc53f9, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2078178309 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1902489288533864, guid: 00c9ead4afffc4146a19d97c085b420c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1134621043}
---- !u!114 &2078178310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2078178309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1121ee9feae8b42468bc7a6362499b90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isShow: 0
---- !u!114 &2078178311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2078178309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1825ee0bf12054075a2244bad1af8498, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clusterUnit: {fileID: 1328332969668444, guid: f5ae1cbefe0564b9b8188b5361d1f976,
-    type: 2}
-  tooltipPrefab: {fileID: 1000013198843976, guid: b7054c17b3c96436ca9cc9f24ea05e62,
-    type: 2}
-  resizeScale: 0.02
-  appear_option: 1
