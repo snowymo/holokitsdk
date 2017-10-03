@@ -22,7 +22,9 @@ namespace HoloKit {
         public Shader BarrelDistortionShader = null;
         public Material BarrelDistortionMaterial = null;
 
-        void OnRenderImage(RenderTexture src, RenderTexture dest)
+		public float FovRadians { get; internal set; }
+
+		void OnRenderImage(RenderTexture src, RenderTexture dest)
         {
             if (!CheckResources())
             {

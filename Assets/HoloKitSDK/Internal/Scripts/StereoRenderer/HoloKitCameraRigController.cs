@@ -243,7 +243,7 @@ namespace HoloKit
             float renderScale = 1;
             float renderWidth = renderScale * PhoneScreenHeight / 2;
             float renderHeight = renderScale * PhoneScreenWidth * ViewportHeightRatio;
-            float renderInnerEyeWidth = renderScale * PupilDistance / 2;
+            float renderInnerEyeWidth = renderScale * 0.064f/*PupilDistance*/ / 2;
             float near = renderScale * FresnelToEyeDistance;
             float far = 1000;
             

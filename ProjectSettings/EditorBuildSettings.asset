@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 41d3b0f2be66c4f89938682fa7778923
+  - enabled: 1
+    path: Assets/Dstillery/DataVisIOS.unity
+    guid: cb8013f70c5e7430ea06d2bea4bb484b

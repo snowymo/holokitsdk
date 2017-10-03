@@ -72,6 +72,10 @@ public class SelectDisplay : MonoBehaviour {
 				tooltiptf.forward = Camera.main.transform.forward;
 				tooltiptf.localPosition = new Vector3 (0.5f, 0.5f, -0.5f);
 				tooltiptf.GetComponent<TextMesh> ().text = ih.clusters [clusterIdx].keywords [ih.clusters [clusterIdx].keywords.Count - 1].kw;
+				if(ih.clusters[clusterIdx].keywords.Count > 1)
+					tooltiptf.GetComponent<TextMesh>().text += "\n" + ih.clusters[clusterIdx].keywords[ih.clusters[clusterIdx].keywords.Count - 2].kw;
+				if (ih.clusters[clusterIdx].keywords.Count > 2)
+					tooltiptf.GetComponent<TextMesh>().text += "\n" + ih.clusters[clusterIdx].keywords[ih.clusters[clusterIdx].keywords.Count - 3].kw;
 			}
 			// show points
 			for (int i = 0; i < ih.clusters [clusterIdx].indicesOfPoints.Count; i++) {
