@@ -84,7 +84,7 @@ public class InputHandler
 	const string file_clusterlabel = "Data/clusters_C800.txt";
 	const string file_clusterpos = "Data/cluster_centers_C800.txt";
 	const string file_keywords = "Data/cluster_word_scores.txt";
-	const string file_score = "Data/rgb.txt";
+	const string file_score = "Data/benchmark_index_rgb.txt";//"Data/rgb.txt";
 	#endif
 
 

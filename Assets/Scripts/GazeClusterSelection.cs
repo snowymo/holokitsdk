@@ -11,7 +11,7 @@ public class GazeClusterSelection : MonoBehaviour {
 //	public GameObject pointUnit;
 //	float resizeScale;
 //	public MeshGen mg;
-	InputHandler ih;
+	//InputHandler ih;
 	public bool isGazeEnter;
 
 	public void GazeEnter() {
@@ -40,7 +40,7 @@ public class GazeClusterSelection : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ih = GameObject.Find ("MeshGen").GetComponent<MeshGen>().ih;
+		//ih = GameObject.Find ("MeshGen").GetComponent<MeshGen>().ih;
 		isGazeEnter = false;
 		oriObjMat = gameObject.GetComponent<Renderer> ().material;
 //		resizeScale = 0.02f;
