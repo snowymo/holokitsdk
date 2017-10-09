@@ -115,8 +115,8 @@ ShowPoints,
 			//			print ("cluster" + i.ToString () + " " + ih.clusters [i].color_score + ":" + rgb.ToString ());
 			//			Material mat = new Material (ih.clusters [i].go.GetComponent<Renderer> ().material);
 			//			mat.color = new Color (rgb [0], rgb [1], rgb [2], 0.5f);
-			Debug.Log("[hehe]: assign color:" + ih.clusters[i].color.ToString());
-			ih.clusters [i].go.GetComponent<Renderer> ().material.color = new Color (ih.clusters [i].color [0], ih.clusters [i].color [1], ih.clusters [i].color [2], 0.5f);
+			//Debug.Log("[hehe]: assign color:" + ih.clusters[i].color.ToString());
+			ih.clusters [i].go.GetComponent<Renderer> ().material.color = new Color (ih.clusters [i].color [0], ih.clusters [i].color [1], ih.clusters [i].color [2], 1.0f);
 //			print ("[hehe]: color when creating spheres" + ih.clusters [i].go.GetComponent<Renderer> ().material.color);
 			GameObject tooltip = GameObject.Instantiate (tooltipPrefab, ih.clusters [i].go.transform);
 			tooltip.name = "clusterName";

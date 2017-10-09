@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using HoloKit;
 using UnityEngine;
 
 public class SelectDisplay : MonoBehaviour {
@@ -33,6 +34,14 @@ public class SelectDisplay : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Mouse0)) {
 			if (GetComponent<GazeClusterSelection> ().isGazeEnter)
 				selectCluster ();
+		}
+
+		if (HoloKitInputManager.Instance.GetKeyDown(HoloKitKeyCode.U))
+		{
+			if (GetComponent<GazeClusterSelection>().isGazeEnter)
+				selectCluster();
+			else
+				deselectCluster();
 		}
 	}
 

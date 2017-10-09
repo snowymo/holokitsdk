@@ -208,7 +208,7 @@ public class InputHandler
 
 	private void addClusterColor (string[] stColor)
 	{
-		Debug.Log ("[hehe] addClusterColor " + stColor.Length);
+		//Debug.Log ("[hehe] addClusterColor " + stColor.Length);
 		if (stColor.Length == 4) {
 			float idx = float.Parse (stColor [0], System.Globalization.NumberStyles.Float);
 			float r = 0f;
@@ -218,7 +218,7 @@ public class InputHandler
 			g = float.Parse(stColor[2], System.Globalization.NumberStyles.Float);
 			b = float.Parse(stColor[3], System.Globalization.NumberStyles.Float);
 			clusters [(int)(idx) % CLUSTER_SIZE].color = new Vector3(r/256.0f,g/ 256.0f,b/ 256.0f);
-			Debug.Log ("[hehe]color:" + clusters [(int)(idx) % CLUSTER_SIZE].color.ToString());
+			//Debug.Log ("[hehe]color:" + clusters [(int)(idx) % CLUSTER_SIZE].color.ToString());
 		} else {
 			Debug.Log ("[hehe] entry " + stColor.Length + "\t" + stColor[0] + "\t" + stColor[1]);
 		}
