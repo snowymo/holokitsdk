@@ -26,7 +26,7 @@ namespace HoloKit {
         private static void loadiPhone45InchCalibration(HoloKitCameraRigController cameraRig) 
         {
             cameraRig.CameraOffset = new Vector3(0.05915f, -0.09893f, -0.09025f - 0.012f);
-			cameraRig.PupilDistance = 0.03f;//0.064f;
+			cameraRig.PupilDistance = 0.02f;//0.064f;
             cameraRig.PhoneScreenHeight = 0.104f;
             cameraRig.PhoneScreenWidth = 0.058f;
             cameraRig.FresnelLensFocalLength = 0.090f;
