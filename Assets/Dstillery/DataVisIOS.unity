@@ -567,7 +567,7 @@ Prefab:
     - target: {fileID: 114319903775333682, guid: 1667f57469f9e442682a0f8c6e6b9037,
         type: 2}
       propertyPath: resizeScale
-      value: 0.05
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1667f57469f9e442682a0f8c6e6b9037, type: 2}
