@@ -66,6 +66,16 @@ ShowPoints,
 
 	}
 
+	public void RefreshModels() { 
+		ih.Initialize ();
+		if (appear_option == Appearance.ShowPoints) {
+            generateMeshForEachClusterWithPoints();
+		} else if (appear_option == Appearance.ShowClusters) {
+//			generateMeshForEachCluster ();
+			generateSphereForEachCluster();
+		}
+	}
+
 
 
 	void generateMeshForEachClusterWithPoints ()

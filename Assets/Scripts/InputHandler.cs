@@ -80,11 +80,11 @@ public class InputHandler
 	#else
 	const int POINT_SIZE = 50000;
 	public const  int CLUSTER_SIZE = 800;
-	const string file_3dembedding = "Data/3d_embedding.txt";
-	const string file_clusterlabel = "Data/clusters_C800.txt";
-	const string file_clusterpos = "Data/cluster_centers_C800.txt";
-	const string file_keywords = "Data/cluster_word_scores.txt";
-	const string file_score = "Data/benchmark_index_rgb.txt";//"Data/rgb.txt";
+	string file_3dembedding = "Data/3d_embedding.txt";
+	string file_clusterlabel = "Data/clusters_C800.txt";
+	string file_clusterpos = "Data/cluster_centers_C800.txt";
+	string file_keywords = "Data/cluster_word_scores.txt";
+	string file_score = "Data/benchmark_index_rgb.txt";//"Data/rgb.txt";
 	#endif
 
 
@@ -100,6 +100,11 @@ public class InputHandler
 	delegate void call4load (string[] entry);
 
 	call4load loadHandler;
+
+	public void setFileScore(string fn)
+	{
+		file_score = fn;
+	}
 
 	private void addPointItem (string[] stPoint)
 	{

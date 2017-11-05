@@ -24,14 +24,15 @@ public class SelectDisplay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if (Input.GetKeyUp (KeyCode.Mouse0)) {
+		// TODO
+		if (Input.GetKeyUp (KeyCode.Mouse1)) {
 			if (!GetComponent<GazeClusterSelection> ().isGazeEnter) {
 				deselectCluster ();
 			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.Mouse0)) {
+		// TODO
+		if (Input.GetKeyDown (KeyCode.Mouse1)) {
 			if (GetComponent<GazeClusterSelection> ().isGazeEnter)
 				selectCluster ();
 		}
