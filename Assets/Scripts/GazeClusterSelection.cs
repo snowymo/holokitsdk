@@ -15,7 +15,7 @@ public class GazeClusterSelection : MonoBehaviour {
 	public bool isGazeEnter;
 
 	public void GazeEnter() {
-		Debug.Log("[hehe]Gaze entered on " + gameObject.name);
+		//Debug.Log("[hehe]Gaze entered on " + gameObject.name);
 //		GetComponent<Renderer>().material.color = Color.red;
 //		gameObject.transform.localScale = oriObjScale * 1.1f;
 		gameObject.GetComponent<Renderer> ().material = selectedMat;
@@ -27,7 +27,7 @@ public class GazeClusterSelection : MonoBehaviour {
 	}
 
 	public void GazeExit() {
-		Debug.Log("[hehe]Gaze exit from " + gameObject.name);
+		//Debug.Log("[hehe]Gaze exit from " + gameObject.name);
 //		int clusterIdx = int.Parse (gameObject.name.Substring (7));
 		isGazeEnter = false;
 //		GetComponent<Renderer>().material.color = Color.white;

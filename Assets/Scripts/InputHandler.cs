@@ -104,6 +104,7 @@ public class InputHandler
 	public void setFileScore(string fn)
 	{
 		file_score = fn;
+		Debug.Log("[hehe] file score:" + file_score);
 	}
 
 	private void addPointItem (string[] stPoint)
@@ -223,7 +224,7 @@ public class InputHandler
 			g = float.Parse(stColor[2], System.Globalization.NumberStyles.Float);
 			b = float.Parse(stColor[3], System.Globalization.NumberStyles.Float);
 			clusters [(int)(idx) % CLUSTER_SIZE].color = new Vector3(r/256.0f,g/ 256.0f,b/ 256.0f);
-			//Debug.Log ("[hehe]color:" + clusters [(int)(idx) % CLUSTER_SIZE].color.ToString());
+			Debug.Log ("[hehe]color: clusters [(int)(" + idx + ") % CLUSTER_SIZE].color.ToString(): " + clusters [(int)(idx) % CLUSTER_SIZE].color.ToString());
 		} else {
 			Debug.Log ("[hehe] entry " + stColor.Length + "\t" + stColor[0] + "\t" + stColor[1]);
 		}
@@ -296,7 +297,7 @@ public class InputHandler
 //			string result;
 			// Create a new StreamReader, tell it which file to read and what encoding the file was saved as
 			if(Application.isMobilePlatform){
-				#if UNITY_ANDROID
+#if UNITY_ANDROID
 				fileName = Application.streamingAssetsPath + "/" + fileName;
 				WWW reader = new WWW (fileName);
 				while (!reader.isDone) {
@@ -311,11 +312,19 @@ public class InputHandler
 						//							addPointItem(entries);
 						loadHandler (entries);
 				}
-				#endif
+#endif
 
-				#if UNITY_IPHONE
-				fileName = System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
-
+#if UNITY_IPHONE
+				if (!fileName.Contains(Application.persistentDataPath))
+				{
+					fileName = System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
+				}
+				//else
+				//{
+				//	fileName = "file://" + fileName;
+				//	//var www = new WWW(fileName);
+				//}
+				Debug.Log("[hehe]: file name example:" + fileName);
 				if (File.Exists(fileName))
 				{
 					FileInfo theSourceFile = new FileInfo(fileName);
@@ -407,11 +416,13 @@ public class InputHandler
 
 		pointIdx4Start = 0;
 		loadHandler = addPointItem;
+		Debug.Log ("[hehe]start points loading");
 		loadFromFile (file_3dembedding, new char[]{ ' ' });
 		Debug.Log ("[hehe]finish points loading");
 
 		clusterIdx4Start = 0;
 		loadHandler = addClusterPos;
+		Debug.Log ("[hehe]start cluster loading");
 		loadFromFile (file_clusterpos, new char[]{ ',' });
 		Debug.Log ("[hehe]finish cluster loading");
 
@@ -419,12 +430,14 @@ public class InputHandler
 		//		clusterIdx4Start = 0;
 		pointIdx4Start = 0;
 		loadHandler = addClusterLabel;
+		Debug.Log ("[hehe]start cluster label loading");
 		loadFromFile (file_clusterlabel, new char[]{ ',' });
 		Debug.Log ("[hehe]finish cluster label loading");
 
 		pointIdx4Start = 0;
 		loadHandler = addClusterKeyWords;
 		//		loadFromFile (file_keywords, new char[]{"\t", "[(\'", "\', ", "), (\'", ")]"});
+		Debug.Log ("[hehe]start cluster key words loading");
 		loadFromFile (file_keywords, new char[]{'\t'});
 		Debug.Log ("[hehe]finish cluster key words loading");
 
@@ -432,6 +445,7 @@ public class InputHandler
 		//loadHandler = addClusterColorScore;
 		//loadFromFile (file_score, new char[]{','});
 		loadHandler = addClusterColor;
+		Debug.Log ("[hehe]start cluster color score loading");
 		loadFromFile (file_score, new char[]{','});
 		Debug.Log ("[hehe]finish cluster color score loading");
 	}

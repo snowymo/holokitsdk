@@ -25,14 +25,14 @@ public class SelectDisplay : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// TODO
-		if (Input.GetKeyUp (KeyCode.Mouse1)) {
+		if (Input.GetKeyUp (KeyCode.Mouse0)) {
 			if (!GetComponent<GazeClusterSelection> ().isGazeEnter) {
 				deselectCluster ();
 			}
 		}
 
 		// TODO
-		if (Input.GetKeyDown (KeyCode.Mouse1)) {
+		if (Input.GetKeyDown (KeyCode.Mouse0)) {
 			if (GetComponent<GazeClusterSelection> ().isGazeEnter)
 				selectCluster ();
 		}
@@ -74,7 +74,7 @@ public class SelectDisplay : MonoBehaviour {
 			if (ih.clusters [clusterIdx].keywords.Count > 0) {
 				Transform tooltiptf = gameObject.transform.Find ("tooltip");
 				if (tooltiptf == null) {
-					GameObject tooltip = GameObject.Instantiate (tooltipPrefab, gameObject.transform);
+					GameObject tooltip = Instantiate (tooltipPrefab, gameObject.transform);
 					tooltip.name = "tooltip";
 					tooltiptf = tooltip.transform;
 				}

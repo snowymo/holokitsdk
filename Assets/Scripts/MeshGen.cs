@@ -81,10 +81,14 @@ ShowPoints,
 	void generateMeshForEachClusterWithPoints ()
 	{
 		for (int i = 0; i < ih.clusters.Length; i++) {
-			ih.clusters [i].go = GameObject.Instantiate (clusterUnit);
+			// destroy old version
+			//Destroy(ih.clusters[i].go);
+			// create new version
+			ih.clusters [i].go = Instantiate (clusterUnit);
 			ih.clusters [i].go.name = "cluster" + i.ToString ();
 			for (int j = 0; j < ih.clusters [i].indicesOfPoints.Count; j++) {
-//				print ("clusters[i].indicesOfPoints:" + j + "point:" + ih.points [ih.clusters [i].indicesOfPoints [j]]);
+				//				print ("clusters[i].indicesOfPoints:" + j + "point:" + ih.points [ih.clusters [i].indicesOfPoints [j]]);
+				//if(ih.clusters[i].mm.
 				ih.clusters [i].mm.addOneObj (ih.points [ih.clusters [i].indicesOfPoints [j]].pos);
 			}
 			Mesh mesh = ih.clusters [i].go.GetComponent<MeshFilter> ().mesh;
@@ -99,7 +103,7 @@ ShowPoints,
 	void generateMeshForEachCluster ()
 	{
 		for (int i = 0; i < ih.clusters.Length; i++) {
-			ih.clusters [i].go = GameObject.Instantiate (clusterUnit);
+			ih.clusters [i].go = Instantiate (clusterUnit);
 			ih.clusters [i].go.name = "cluster" + i.ToString ();
 //			for (int j = 0; j < ih.clusters [i].indicesOfPoints.Count; j++) {
 //				print ("clusters[i].indicesOfPoints:" + j + "point:" + ih.points [ih.clusters [i].indicesOfPoints [j]]);
@@ -118,31 +122,27 @@ ShowPoints,
 	void generateSphereForEachCluster ()
 	{
 		for (int i = 0; i < ih.clusters.Length; i++) {
-			ih.clusters [i].go = GameObject.Instantiate (clusterUnit, ih.clusters[i].pos * resizeScale, Quaternion.identity);
-			ih.clusters [i].go.transform.localScale = new Vector3 (resizeScale, resizeScale, resizeScale);
-			ih.clusters [i].go.name = "cluster" + i.ToString ();
-			//			Vector3 rgb = generateColor (ih.clusters [i].color_score);
-			//			print ("cluster" + i.ToString () + " " + ih.clusters [i].color_score + ":" + rgb.ToString ());
-			//			Material mat = new Material (ih.clusters [i].go.GetComponent<Renderer> ().material);
-			//			mat.color = new Color (rgb [0], rgb [1], rgb [2], 0.5f);
-			//Debug.Log("[hehe]: assign color:" + ih.clusters[i].color.ToString());
-			ih.clusters [i].go.GetComponent<Renderer> ().material.color = new Color (ih.clusters [i].color [0], ih.clusters [i].color [1], ih.clusters [i].color [2], 1.0f);
-//			print ("[hehe]: color when creating spheres" + ih.clusters [i].go.GetComponent<Renderer> ().material.color);
-			GameObject tooltip = GameObject.Instantiate (tooltipPrefab, ih.clusters [i].go.transform);
-			tooltip.name = "clusterName";
-			tooltip.transform.forward = Camera.main.transform.forward;
-			tooltip.transform.localPosition = new Vector3 (0, 0, -0.5f);
-			tooltip.GetComponent<TextMesh> ().text = ih.clusters [i].go.name;
-			//			for (int j = 0; j < ih.clusters [i].indicesOfPoints.Count; j++) {
-			//				print ("clusters[i].indicesOfPoints:" + j + "point:" + ih.points [ih.clusters [i].indicesOfPoints [j]]);
-//			ih.clusters [i].mm.addOneObj (ih.clusters[i].pos);
-			//			}
-//			Mesh mesh = ih.clusters [i].go.GetComponent<MeshFilter> ().mesh;
-//			mesh.vertices = ih.clusters [i].mm.vertices;
-//			mesh.uv = ih.clusters [i].mm.uvs;
-//			mesh.triangles = ih.clusters [i].mm.triangles;
-//			mesh.normals = ih.clusters [i].mm.norms;
-//			mesh.RecalculateNormals ();
+			if (ih.clusters[i].go == null)
+			{
+				ih.clusters[i].go = Instantiate(clusterUnit, ih.clusters[i].pos * resizeScale, Quaternion.identity);
+				ih.clusters[i].go.transform.localScale = new Vector3(resizeScale, resizeScale, resizeScale);
+				ih.clusters[i].go.name = "cluster" + i.ToString();
+
+				//			Vector3 rgb = generateColor (ih.clusters [i].color_score);
+				//			print ("cluster" + i.ToString () + " " + ih.clusters [i].color_score + ":" + rgb.ToString ());
+				//			Material mat = new Material (ih.clusters [i].go.GetComponent<Renderer> ().material);
+				//			mat.color = new Color (rgb [0], rgb [1], rgb [2], 0.5f);
+				//Debug.Log("[hehe]: assign color:" + ih.clusters[i].color.ToString());
+
+				GameObject tooltip = Instantiate(tooltipPrefab, ih.clusters[i].go.transform);
+				tooltip.name = "clusterName";
+				tooltip.transform.forward = Camera.main.transform.forward;
+				tooltip.transform.localPosition = new Vector3(0, 0, -0.5f);
+				tooltip.GetComponent<TextMesh>().text = ih.clusters[i].go.name;
+			}
+
+			ih.clusters [i].go.GetComponent<Renderer> ().material.color = new Color(ih.clusters[i].color[0], ih.clusters[i].color[1], ih.clusters[i].color[2], 1.0f);
+			print("[hehe]: color when creating spheres:ih.clusters[" + i + "].color:" + ih.clusters[i].color + " : " + ih.clusters[i].go.GetComponent<Renderer> ().material.color);
 		}
 	}
 
