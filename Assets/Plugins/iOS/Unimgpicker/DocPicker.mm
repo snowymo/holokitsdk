@@ -10,7 +10,7 @@
 
 #pragma mark Config
 
-const char* CALLBACK_OBJECT = "DocPicker";
+const char* CALLBACK_OBJECT = "ZhenyiDocPicker";
 const char* CALLBACK_METHOD = "OnComplete";
 const char* CALLBACK_METHOD_FAILURE = "OnFailure";
 

@@ -142,7 +142,7 @@ PlayerSettings:
   resolutionScalingMode: 0
   applicationIdentifier:
     Android: com.ambergarage.holokitsdk
-    iOS: com.zhenyi.tuner
+    iOS: com.zhenyi.distillery
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 24

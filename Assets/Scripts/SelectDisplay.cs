@@ -17,7 +17,7 @@ public class SelectDisplay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ih = GameObject.Find ("MeshGen").GetComponent<MeshGen>().ih;
+		ih = GameObject.Find ("ZhenyiMeshGen").GetComponent<MeshGen>().ih;
 		resizeScale = 0.02f;
 		isSelect = false;
 	}
